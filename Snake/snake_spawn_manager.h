@@ -17,7 +17,5 @@ public:
 	static void fixed_update();
 
 	static void check_timer();
-
-	static void timer_update_spawn_snake(Time& timer, int update_time, int number);
 };
 

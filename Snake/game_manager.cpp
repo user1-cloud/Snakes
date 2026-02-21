@@ -4,6 +4,7 @@
 #include "item_manager.h"
 #include "snake_spawn_manager.h"
 #include "ui_manager.h"
+#include "time_manager.h"
 
 RANDOM_ENGINE_TYPE GameManager::random_engine = GameManager::get_random_engine();
 

@@ -1,5 +1,6 @@
 #include "item_manager.h"
 #include "game_object_manager.h"
+#include "time_manager.h"
 
 Time ItemManager::food_timer = Time(0);
 
@@ -38,12 +39,5 @@ void ItemManager::try_set_items(int number, ItemType item_type) {
 }
 
 void ItemManager::check_timer() {
-	timer_update_set_item(food_timer, FOOD_UPDATE_TIME, ItemType::Food, FOOD_UPDATE_NUMBER);
-}
-
-void ItemManager::timer_update_set_item(Time& timer, int update_time, ItemType item_type, int number) {
-	if (Time() - timer > update_time) {
-		timer = timer + update_time;
-		try_set_items(number, item_type);
-	}
+	TimeManager::check_timer(food_timer, FOOD_UPDATE_TIME, try_set_items, FOOD_UPDATE_NUMBER, ItemType::Food);
 }

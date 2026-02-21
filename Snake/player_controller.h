@@ -6,7 +6,8 @@ class PlayerController : public Controller
 {
 	Snake* snake = nullptr;
 public:
+	bool is_accelerated = false;
 	PlayerController(Snake* snake) : snake(snake){}
-	virtual void update() const override;
+	virtual void update() override;
 };
 

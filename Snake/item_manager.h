@@ -17,7 +17,5 @@ public:
 	static void try_set_items(int number, ItemType item_type);
 
 	static void check_timer();
-
-	static void timer_update_set_item(Time& timer, int update_time, ItemType item_type, int number);
 };
 

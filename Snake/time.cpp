@@ -1,4 +1,5 @@
 #include "time.h"
+#include "time_manager.h"
 
 // 初始化为当前时刻
 Time::Time() {

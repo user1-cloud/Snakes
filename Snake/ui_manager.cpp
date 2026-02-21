@@ -1,6 +1,7 @@
 #include "ui_manager.h"
 #include "input_manager.h"
 #include "config.h"
+#include "time_manager.h"
 
 bool UIManager::is_paused = false;
 

@@ -15,7 +15,7 @@
 
 AIController::AIController(Snake* snake) : snake_(snake) {}
 
-void AIController::update() const {
+void AIController::update() {
     // 如果蛇即将死亡（被自己或墙撞到），尝试紧急规避
     if (snake_->about_death()) {
         evade_death();

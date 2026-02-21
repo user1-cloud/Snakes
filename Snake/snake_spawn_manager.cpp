@@ -1,6 +1,7 @@
 #include "snake_spawn_manager.h"
 #include "snake.h"
 #include "game_object_manager.h"
+#include "time_manager.h"
 
 std::uniform_int_distribution<> SnakeSpawnManager::snake_length_distribution(SNAKE_ENEMY_INIT_LENGTH_MIN, SNAKE_ENEMY_INIT_LENGTH_MAX);
 
@@ -33,11 +34,5 @@ void SnakeSpawnManager::fixed_update() {
 }
 
 void SnakeSpawnManager::check_timer() {
-	timer_update_spawn_snake(snake_spawn_timer, ENEMY_SNAKE_SPAWN_INTERVAL, 1);
-}
-void SnakeSpawnManager::timer_update_spawn_snake(Time& timer, int update_time, int number) {
-	if (Time() - timer > update_time) {
-		timer = timer + update_time;
-		spawn_snakes(number);
-	}
+	TimeManager::check_timer(snake_spawn_timer, ENEMY_SNAKE_SPAWN_INTERVAL, spawn_snakes, 1);
 }

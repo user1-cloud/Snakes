@@ -2,7 +2,7 @@
 #include <SDL3/SDL.h>
 #include "input_manager.h"
 
-void PlayerController::update() const{
+void PlayerController::update(){
 	int player_event;
 	if ((player_event = InputManager::get_player_down_event()) != -1) {
 		switch (player_event) {
@@ -25,6 +25,7 @@ void PlayerController::update() const{
 		case key_speed_up_0:
 		case key_speed_up_1:
 			snake->change_speed(SNAKE_PLAYER_SPEED_SHIFT_ACCELERATED);
+			is_accelerated = true;
 			break;
 		default:
 			break;
@@ -35,6 +36,7 @@ void PlayerController::update() const{
 		case key_speed_up_0:
 		case key_speed_up_1:
 			snake->change_speed(SNAKE_PLAYER_SPEED);
+			is_accelerated = false;
 			break;
 		default:
 			break;

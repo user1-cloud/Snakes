@@ -1,6 +1,6 @@
 #pragma once
 #include <SDL3/SDL.h>
-#include "time_manager.h"
+
 struct Time
 {
 	struct RawTime {};
