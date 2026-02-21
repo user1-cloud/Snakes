@@ -9,5 +9,7 @@ public:
 	Drawer(SDL_Window* window);
 	void draw();
 	void quit();
+
+	void render_game(SDL_Renderer*);
 };
 
