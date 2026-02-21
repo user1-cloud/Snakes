@@ -2,7 +2,7 @@
 
 // 初始化为当前时刻
 Time::Time() {
-	tick = SDL_GetPerformanceCounter();
+	tick = TimeManager::get_current_tick();
 }
 
 double Time::operator-(const Time& other) const noexcept {

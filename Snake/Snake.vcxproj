@@ -39,6 +39,7 @@
     <ClCompile Include="snake_world.cpp" />
     <ClCompile Include="time.cpp" />
     <ClCompile Include="time_manager.cpp" />
+    <ClCompile Include="ui_manager.cpp" />
     <ClCompile Include="updater.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +64,7 @@
     <ClInclude Include="snake_world.h" />
     <ClInclude Include="time.h" />
     <ClInclude Include="time_manager.h" />
+    <ClInclude Include="ui_manager.h" />
     <ClInclude Include="updater.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

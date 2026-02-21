@@ -16,7 +16,7 @@ void Updater::updater_init(){
 void Updater::updater_update() {
 	update();
 	// Time()为当前时间
-	Time current_time = Time();
+	Time current_time = Time(Time::RawTime{});
 	if (current_time - last_time >= FIXED_DELTA_TIME) {
 		last_time = last_time + FIXED_DELTA_TIME;
 		fixed_update();

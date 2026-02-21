@@ -128,17 +128,17 @@ static constexpr int player_up_keys[] = {
     SDLK_SPACE,
     SDLK_LSHIFT
 };
-constexpr size_t PLAYER_UP_KEYS_SIZE = std::size(player_down_keys);
+constexpr size_t PLAYER_UP_KEYS_SIZE = std::size(player_up_keys);
 
 constexpr int ui_down_keys[] = {
 	SDLK_ESCAPE
 };
-constexpr size_t UI_DOWN_KEYS_SIZE = std::size(player_down_keys);
+constexpr size_t UI_DOWN_KEYS_SIZE = std::size(ui_down_keys);
 
 constexpr int ui_up_keys[] = {
 	SDLK_ESCAPE
 };
-constexpr size_t UI_UP_KEYS_SIZE = std::size(player_down_keys);
+constexpr size_t UI_UP_KEYS_SIZE = std::size(ui_up_keys);
 
 // 具体键位设置
 constexpr int key_up_0 = SDLK_W;

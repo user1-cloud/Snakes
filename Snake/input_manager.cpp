@@ -5,10 +5,10 @@
 #include "game_manager.h"
 
 // 静态成员初始化
-int InputManager::player_down_buffer[4] = { 0 };
-int InputManager::player_up_buffer[4] = { 0 };
-int InputManager::ui_down_buffer[4] = { 0 };
-int InputManager::ui_up_buffer[4] = { 0 };
+std::array<int, 4> InputManager::player_down_buffer = {};
+std::array<int, 4> InputManager::player_up_buffer = {};
+std::array<int, 4> InputManager::ui_down_buffer = {};
+std::array<int, 4> InputManager::ui_up_buffer = {};
 int InputManager::player_down_head = 0;
 int InputManager::player_down_tail = 0;
 int InputManager::player_up_head = 0;
@@ -17,6 +17,21 @@ int InputManager::ui_down_head = 0;
 int InputManager::ui_down_tail = 0;
 int InputManager::ui_up_head = 0;
 int InputManager::ui_up_tail = 0;
+
+void InputManager::init() {
+    player_down_buffer = {};
+    player_up_buffer = {};
+    ui_down_buffer = {};
+    ui_up_buffer = {};
+    player_down_head = 0;
+    player_down_tail = 0;
+    player_up_head = 0;
+    player_up_tail = 0;
+    ui_down_head = 0;
+    ui_down_tail = 0;
+    ui_up_head = 0;
+    ui_up_tail = 0;
+}
 
 // 实现函数
 void InputManager::update() {

@@ -1,14 +1,15 @@
 #pragma once
 #include <SDL3/SDL.h>
+#include <array>
 
 class InputManager {
 public:
 
     // 四个静态缓冲区（每个长度为4）
-    static int player_down_buffer[4];
-    static int player_up_buffer[4];
-    static int ui_down_buffer[4];
-    static int ui_up_buffer[4];
+    static std::array<int, 4> player_down_buffer;
+    static std::array<int, 4> player_up_buffer;
+    static std::array<int, 4> ui_down_buffer;
+    static std::array<int, 4> ui_up_buffer;
 
     // 静态指针（环形缓冲区实现）
     static int player_down_head;
@@ -19,6 +20,8 @@ public:
     static int ui_down_tail;
     static int ui_up_head;
     static int ui_up_tail;
+
+    static void init();
 
     // 更新函数：处理所有输入事件
     static void update();
