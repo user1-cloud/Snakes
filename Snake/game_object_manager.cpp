@@ -5,6 +5,9 @@
 #include "game_manager.h"
 #include "player_controller.h"
 #include "ai_controller.h"
+#include "time_manager.h"
+
+Time GameObjectManager::choose_enemy_spawn_point_timer = Time(0);
 
 bool GameObjectManager::point_is_items(int2 pos, Item& item_get) {
 	auto it = items.find(pos);
@@ -97,6 +100,7 @@ void GameObjectManager::update() {
 
 void GameObjectManager::fixed_update() {
 	all_snake_fixed_update();
+	TimeManager::check_timer(choose_enemy_spawn_point_timer, ENEMY_SNAKE_SPAWN_INTERVAL * 2, choose_enemy_spawn_point);
 }
 
 int2 GameObjectManager::random_safe_pos() {
@@ -130,6 +134,7 @@ void GameObjectManager::init() {
 }
 
 void GameObjectManager::choose_enemy_spawn_point() {
+	enemy_spawn_points.clear();
 	int2 center = GameManager::snake_world.world_center();
 	int2 world_size = GameManager::snake_world.world_size;
 	for (int2 corner : {int2(0, 0), int2(0, world_size.y), int2(world_size.x, 0), int2(world_size.x, world_size.y)}) {

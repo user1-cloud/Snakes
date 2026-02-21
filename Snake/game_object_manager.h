@@ -17,6 +17,7 @@ private:
 	GameObjectManager() = delete;
 	~GameObjectManager() = delete;
 public:
+	static Time choose_enemy_spawn_point_timer;
 	inline static Snake player_snake;
 	inline static std::array<Snake, MAX_ENEMY_SNAKE_NUMBER> enemy_snakes;
 	
