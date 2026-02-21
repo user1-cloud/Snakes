@@ -22,6 +22,7 @@
     <ClCompile Include="ai_controller.cpp" />
     <ClCompile Include="color.cpp" />
     <ClCompile Include="controller.cpp" />
+    <ClCompile Include="drawer.cpp" />
     <ClCompile Include="draw_info.cpp" />
     <ClCompile Include="game_manager.cpp" />
     <ClCompile Include="game_object_manager.cpp" />
@@ -45,6 +46,7 @@
     <ClInclude Include="color.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="controller.h" />
+    <ClInclude Include="drawer.h" />
     <ClInclude Include="draw_info.h" />
     <ClInclude Include="game_manager.h" />
     <ClInclude Include="game_object_manager.h" />

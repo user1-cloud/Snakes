@@ -93,6 +93,9 @@
     <ClCompile Include="snake_spawn_manager.cpp">
       <Filter>源文件\manager</Filter>
     </ClCompile>
+    <ClCompile Include="drawer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h">
@@ -157,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="snake_spawn_manager.h">
       <Filter>头文件\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="drawer.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
