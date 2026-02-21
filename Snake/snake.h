@@ -11,8 +11,6 @@
 
 class Snake
 {
-	Time accelerate_erase_tail_timer = Time(0);
-
 	// 当前时刻减去计时器时刻（tick）
 	int current_difference = 0;
 	// 方向长度必须为1
@@ -35,6 +33,10 @@ class Snake
 	int2 last_tail_pos;
 
 public:
+	Time accelerate_erase_tail_timer = Time(0);
+	Time dying_leave_food_timer = Time(0);
+
+
 	Color color;
 	// 蛇身
 	std::vector<int2> body;// 尾->头
@@ -43,6 +45,7 @@ public:
 
 	bool is_invincible = false;
 	bool is_active = false;
+	bool is_dying = false;
 
 	Snake(const int2 init_pos, const int length, const int2 dir, const Color color0) {
 		awake(init_pos, length, dir, color0);
@@ -83,6 +86,7 @@ public:
 
 	void move();
 	void erase_tail();
+	void erase_head();
 
 	void change_speed(double target_speed);
 
@@ -102,6 +106,10 @@ public:
 	bool is_death() const;
 
 	bool about_death();
+
+	void erase_head_leave_food();
+	void dying();
+	void probably_leave_food(int2 pos);
 
 	void fixed_update();
 	void update();

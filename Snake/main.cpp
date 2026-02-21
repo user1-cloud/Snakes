@@ -5,7 +5,6 @@
 #include "running.h"
 #include "game_manager.h"
 #include "game_object_manager.h"
-#include "single_snake_drawInfo.h"
 #include "drawer.h"
 
 int main(int argc, char* argv[]) {

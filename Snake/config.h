@@ -21,7 +21,7 @@ constexpr double SNAKE_ENEMY_SPEED = 1.6;
 
 constexpr double SNAKE_DEATH_BUFFER_TIME = 0.6;
 
-// 玩家加速时长度减少速度（s / 格）
+// 玩家加速时长度减少时间（s / 格）
 constexpr double PLAYER_ACCELERATE_ERASE_TAIL_TIME = 3;
 
 // 蛇初始长度
@@ -33,6 +33,9 @@ constexpr int SNAKE_ENEMY_INIT_LENGTH_MAX = 12;
 // 蛇初始方向
 constexpr int2 SNAKE_PLAYER_INIT_DIR = int2(1, 0);
 
+// 蛇死亡时长度减少时间（s / 格）
+constexpr double SNAKE_DYING_LENGTH_REDUCE_TIME = 0.1;
+
 // 敌人蛇数量限制
 constexpr int INIT_ENEMY_SNAKE_NUMBER = 4;
 constexpr int MAX_ENEMY_SNAKE_NUMBER = 8;
@@ -40,6 +43,9 @@ constexpr int MIN_ENEMY_SNAKE_NUMBER = 2;
 
 // 敌人蛇生成间隔
 constexpr int ENEMY_SNAKE_SPAWN_INTERVAL = 5;
+
+// 蛇死亡时身体部分变为食物的概率
+constexpr double BODY_TO_FOOD_PROBABILITY = 0.4;
 
 // 敌人蛇每区域的随机生成生成点数量设置（世界坐标按照田字分为四个区域，因此总生成点数量为4倍这个）
 constexpr int REGION_SPAWN_POINT_NUMBER = 3;

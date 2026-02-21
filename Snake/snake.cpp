@@ -6,6 +6,7 @@
 #include "game_manager.h"
 #include "player_controller.h"
 #include "time_manager.h"
+#include "item_manager.h"
 
 Snake::Snake() {
 	awake(GameManager::snake_world.world_center(), SNAKE_PLAYER_INIT_LENGTH, SNAKE_PLAYER_INIT_DIR, PLAYER_SNAKE_COLOR);
@@ -36,6 +37,7 @@ void Snake::awake(const int2 init_pos, const int length, const int2 dir, const C
 	else {
 		is_active = true;
 	}
+	is_dying = false;
 	body.assign(length, init_pos);
 	last_tail_pos = init_pos;
 	old_dir = dir;
@@ -82,6 +84,10 @@ void Snake::move() {
 void Snake::erase_tail() {
 	last_tail_pos = *body.begin();
 	body.erase(body.begin());
+}
+
+void Snake::erase_head() {
+	body.pop_back();
 }
 
 void Snake::change_speed(double target_speed) {
@@ -155,7 +161,34 @@ void Snake::check_can_move() {
 	}
 }
 
+void Snake::erase_head_leave_food() {
+	int2 current_head_pos = body.back();
+	erase_head();
+	probably_leave_food(current_head_pos);
+}
+
+void Snake::probably_leave_food(int2 pos) {
+	std::bernoulli_distribution dist(BODY_TO_FOOD_PROBABILITY);
+	if (dist(GameManager::random_engine)) {
+		ItemManager::try_set_item(pos, ItemType::Food);
+	}
+}
+
+void Snake::dying() {
+	if (body.size() == 1) {
+		Die();
+		probably_leave_food(body.back());
+	}
+	else {
+		erase_head_leave_food();
+	}
+}
+
 void Snake::fixed_update() {
+	if (is_dying) {
+		TimeManager::check_timer(dying_leave_food_timer, SNAKE_DYING_LENGTH_REDUCE_TIME, std::bind(&Snake::dying, this));
+		return;
+	}
 	move_double_count += speed * FIXED_DELTA_TIME;
 	if (move_double_count > 1.0) {
 		move_double_count -= 1.0;
@@ -165,8 +198,8 @@ void Snake::fixed_update() {
 			move();
 			if (is_death()) {
 				body.pop_back();
-				Die();
-				return;
+				dying_leave_food_timer = Time();
+				is_dying = true;
 			}
 			Item item;
 			bool need_to_erase_tail = true;
