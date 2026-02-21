@@ -21,6 +21,9 @@ constexpr double SNAKE_ENEMY_SPEED = 1.6;
 
 constexpr double SNAKE_DEATH_BUFFER_TIME = 0.6;
 
+// 玩家加速时长度减少速度（s / 格）
+constexpr double PLAYER_ACCELERATE_ERASE_TAIL_TIME = 3;
+
 // 蛇初始长度
 constexpr int SNAKE_PLAYER_INIT_LENGTH = 3;
 constexpr int SNAKE_ENEMY_INIT_LENGTH = 3;

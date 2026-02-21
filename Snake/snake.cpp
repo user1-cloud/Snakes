@@ -1,9 +1,11 @@
 #include <random>
-
+#include <functional>
 #include "snake.h"
 #include "game_object_manager.h"
 #include "snake_world.h"
 #include "game_manager.h"
+#include "player_controller.h"
+#include "time_manager.h"
 
 Snake::Snake() {
 	awake(GameManager::snake_world.world_center(), SNAKE_PLAYER_INIT_LENGTH, SNAKE_PLAYER_INIT_DIR, PLAYER_SNAKE_COLOR);
@@ -188,6 +190,11 @@ void Snake::fixed_update() {
 	else {
 		controller->update();
 	}
+	if (PlayerController* pc = dynamic_cast<PlayerController*>(controller); pc && pc->is_accelerated && body.size() > 1) {
+		TimeManager::check_timer(accelerate_erase_tail_timer, PLAYER_ACCELERATE_ERASE_TAIL_TIME, std::bind(&Snake::erase_tail, this));
+		current_difference = Time().tick - accelerate_erase_tail_timer.tick;
+	}
+	accelerate_erase_tail_timer = Time(Time().tick - current_difference);
 }
 
 void Snake::update() {

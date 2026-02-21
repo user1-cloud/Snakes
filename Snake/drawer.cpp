@@ -70,7 +70,7 @@ void Drawer::render_game(SDL_Renderer* renderer0) {
 
         if (body_size == 1) {
             int2 target_pos = snake_world.world_pos_to_screen_pos(body.back())
-                - int2(snake_world.point_size.x * single_snake_draw_info.old_dir.x, snake_world.point_size.y * single_snake_draw_info.old_dir.y)
+                - int2(snake_world.point_size.x * single_snake_draw_info.old_dir.x, -snake_world.point_size.y * single_snake_draw_info.old_dir.y)
                 * back_offset_rate;
             SDL_FRect target_rect = snake_world.screen_left_down_pos_to_rect(target_pos);
             SDL_RenderFillRect(renderer0, &target_rect);

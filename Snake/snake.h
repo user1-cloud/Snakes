@@ -11,6 +11,10 @@
 
 class Snake
 {
+	Time accelerate_erase_tail_timer = Time(0);
+
+	// 当前时刻减去计时器时刻（tick）
+	int current_difference = 0;
 	// 方向长度必须为1
 	int2 old_dir = int2(0, 1);
 	int2 new_dir = int2(0, 1);
