@@ -50,25 +50,25 @@ brew install sdl3
 ### 方式1：手动编译（使用g++/clang++）
 ```bash
 # 克隆项目
-git clone https://github.com/你的用户名/snake-game-sdl3.git
-cd snake-game-sdl3
+git clone https://github.com/user1-cloud/Snakes.git
+cd Snakes
 
 # Linux/macOS 编译
-g++ src/*.cpp -o snake_game -lSDL3 -std=c++17
+g++ src/*.cpp -o Snakes -lSDL3 -std=c++17
 # 运行
 ./snake_game
 
 # Windows (MinGW) 编译
-g++ src/*.cpp -o snake_game.exe -lSDL3 -std=c++17 -I path/to/SDL3/include -L path/to/SDL3/lib
+g++ src/*.cpp -o Snakes.exe -lSDL3 -std=c++17 -I path/to/SDL3/include -L path/to/SDL3/lib
 # 运行
 snake_game.exe
 ```
 
 ### 方式2：使用 CMake（推荐，跨平台）
 ```bash
-# 克隆项目
-git clone https://github.com/你的用户名/snake-game-sdl3.git
-cd snake-game-sdl3
+# 克隆项目 (请替换为您的实际仓库地址)
+git clone https://github.com/user1-cloud/Snakes.git
+cd Snakes
 
 # 创建构建目录
 mkdir build && cd build
@@ -95,7 +95,9 @@ Release\snake_game.exe
 | ↓ / S | 蛇向下移动 |
 | ← / A | 蛇向左移动 |
 | → / D | 蛇向右移动 |
-| Shift/空格 | 蛇加速 |
+| Space / Shift | 蛇加速 |
+| ESC | 暂停 / 继续游戏 |
+
 
 ## 🐞 常见问题
 1. **编译报错：找不到 SDL3 头文件**  
@@ -107,7 +109,8 @@ Release\snake_game.exe
    检查 CMakeLists.txt 中是否正确链接 SDL3，或通过 `-DSDL3_DIR` 指定 SDL3 安装路径。
 
 ## ✨ 开发计划
-- [ ] 添加暂停功能、死亡界面
+- [x] 添加暂停功能
+- [ ] 添加死亡界面
 - [ ] 添加背景音乐和音效
 - [ ] 实现分数系统
 - [ ] 增加不同难度等级
