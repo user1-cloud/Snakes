@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="源文件\controller">
+      <UniqueIdentifier>{f0737007-8593-4ea7-a250-849783f0ce47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\controller">
+      <UniqueIdentifier>{291ec614-6c79-42a3-8842-f296796c3442}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\draw_info">
+      <UniqueIdentifier>{c4cd1de2-633c-41c8-bf9c-3e586997fcea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\draw_info">
+      <UniqueIdentifier>{acb5f46b-fd14-4e0f-b31a-7406c72d731b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\manager">
+      <UniqueIdentifier>{81dc39e4-c2d2-455d-a7a1-8f7143b3c6aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\manager">
+      <UniqueIdentifier>{e5614525-f7a8-40d1-9c82-bdc38568560c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="int2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="item.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="snake.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="snake_world.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="time.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ai_controller.cpp">
+      <Filter>源文件\controller</Filter>
+    </ClCompile>
+    <ClCompile Include="controller.cpp">
+      <Filter>源文件\controller</Filter>
+    </ClCompile>
+    <ClCompile Include="player_controller.cpp">
+      <Filter>源文件\controller</Filter>
+    </ClCompile>
+    <ClCompile Include="updater.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="color.cpp">
+      <Filter>源文件\draw_info</Filter>
+    </ClCompile>
+    <ClCompile Include="draw_info.cpp">
+      <Filter>源文件\draw_info</Filter>
+    </ClCompile>
+    <ClCompile Include="single_snake_drawInfo.cpp">
+      <Filter>源文件\draw_info</Filter>
+    </ClCompile>
+    <ClCompile Include="game_manager.cpp">
+      <Filter>源文件\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="game_object_manager.cpp">
+      <Filter>源文件\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="input_manager.cpp">
+      <Filter>源文件\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="time_manager.cpp">
+      <Filter>源文件\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Running.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="item_manager.cpp">
+      <Filter>源文件\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="snake_spawn_manager.cpp">
+      <Filter>源文件\manager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="config.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="int2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="item.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="item_type.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="snake.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="snake_world.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="time.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ai_controller.h">
+      <Filter>头文件\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="controller.h">
+      <Filter>头文件\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="player_controller.h">
+      <Filter>头文件\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="updater.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="color.h">
+      <Filter>头文件\draw_info</Filter>
+    </ClInclude>
+    <ClInclude Include="draw_info.h">
+      <Filter>头文件\draw_info</Filter>
+    </ClInclude>
+    <ClInclude Include="single_snake_drawInfo.h">
+      <Filter>头文件\draw_info</Filter>
+    </ClInclude>
+    <ClInclude Include="game_manager.h">
+      <Filter>头文件\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="game_object_manager.h">
+      <Filter>头文件\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="input_manager.h">
+      <Filter>头文件\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="time_manager.h">
+      <Filter>头文件\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="running.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="item_manager.h">
+      <Filter>头文件\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="snake_spawn_manager.h">
+      <Filter>头文件\manager</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
