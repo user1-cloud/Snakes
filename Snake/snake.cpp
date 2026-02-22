@@ -232,5 +232,9 @@ void Snake::update() {
 }
 
 SingleSnakeDrawInfo Snake::get_draw_info() const {
-	return SingleSnakeDrawInfo(color, body, move_double_count, old_dir, last_tail_pos);
+	return SingleSnakeDrawInfo(color, body, move_double_count, old_dir, last_tail_pos, is_player());
+}
+
+bool Snake::is_player() const{
+	return dynamic_cast<PlayerController*>(controller) != nullptr;
 }

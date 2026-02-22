@@ -75,11 +75,15 @@ void Drawer::render_game(SDL_Renderer* renderer0) {
         double back_offset_rate = 1 - single_snake_draw_info.move_double_count;
 
         if (body_size == 1) {
+            int2 head_dir = single_snake_draw_info.old_dir;
             int2 target_pos = snake_world.world_pos_to_screen_pos(body.back())
-                - int2(snake_world.point_size.x * single_snake_draw_info.old_dir.x, -snake_world.point_size.y * single_snake_draw_info.old_dir.y)
+                - int2(snake_world.point_size.x * head_dir.x, -snake_world.point_size.y * head_dir.y)
                 * back_offset_rate;
             SDL_FRect target_rect = snake_world.screen_left_down_pos_to_rect(target_pos);
             SDL_RenderFillRect(renderer0, &target_rect);
+            if (single_snake_draw_info.is_player_snake) {
+                draw_snake_eyes(renderer0, target_pos, head_dir);
+            }
         }
         else if (body_size > 1) {
             for (int i = 0; i < body_size - 1; i++) {
@@ -92,6 +96,10 @@ void Drawer::render_game(SDL_Renderer* renderer0) {
                 * back_offset_rate;
             SDL_FRect target_rect = snake_world.screen_left_down_pos_to_rect(target_pos);
             SDL_RenderFillRect(renderer0, &target_rect);
+            // 如果是玩家蛇，绘制眼睛
+            if (single_snake_draw_info.is_player_snake) {
+                draw_snake_eyes(renderer0, target_pos, single_snake_draw_info.old_dir);
+            }
 
             int2 tail_dir = body[0] - single_snake_draw_info.last_tail_pos;
             target_pos = snake_world.world_pos_to_screen_pos(body[0])
@@ -118,4 +126,29 @@ void Drawer::render_game(SDL_Renderer* renderer0) {
             SDL_RenderFillRect(renderer0, &target_rect);
         }
     }
+}
+
+
+void Drawer::draw_snake_eyes(SDL_Renderer* renderer0, const int2& pos, const int2& dir) {
+    Uint8 r, g, b, a;
+    SDL_GetRenderDrawColor(renderer0, &r, &g, &b, &a);
+    SDL_SetRenderDrawColor(renderer0, PLAYER_SNAKE_EYES_COLOR.r, PLAYER_SNAKE_EYES_COLOR.g, PLAYER_SNAKE_EYES_COLOR.b, 255);
+    std::vector<int2> eye_pos;
+    if (dir == int2(1, 0)) {
+        eye_pos.assign({ int2(6, 3), int2(7, 3), int2(6, 6), int2(7, 6) });
+    }
+    else if (dir == int2(-1, 0)) {
+        eye_pos.assign({ int2(2, 3), int2(3, 3), int2(2, 6), int2(3, 6) });
+    }
+    else if (dir == int2(0, 1)) {
+        eye_pos.assign({ int2(3, 6), int2(3, 7), int2(6, 6), int2(6, 7) });
+    }
+    else if (dir == int2(0, -1)) {
+        eye_pos.assign({ int2(3, 2), int2(3, 3), int2(6, 2), int2(6, 3) });
+    }
+    for (int2 e_pos : eye_pos) {
+        SDL_FRect target_rect = GameManager::snake_world.screen_left_down_pos_to_little_rect(pos, e_pos);
+        SDL_RenderFillRect(renderer0, &target_rect);
+    }
+    SDL_SetRenderDrawColor(renderer0, r, g, b, a);
 }

@@ -118,5 +118,7 @@ public:
 	double move_double_count = 0.0; // 0-1，大于等于1时前进1格
 
 	SingleSnakeDrawInfo get_draw_info() const;
+
+	bool is_player() const;
 };
 

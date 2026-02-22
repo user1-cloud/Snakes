@@ -100,8 +100,11 @@ constexpr Color REAL_BACKGROUND_COLOR = MANGO_YELLOW;
 // 世界背景颜色
 constexpr Color BACKGROUND_COLOR = SOFT_LEMON;
 
-//玩家蛇身色
+// 玩家蛇身色
 constexpr Color PLAYER_SNAKE_COLOR = INDIAN_RED;
+
+// 玩家蛇眼睛颜色
+constexpr Color PLAYER_SNAKE_EYES_COLOR = SOFT_LEMON;
 
 // 食物颜色
 constexpr Color FOOD_COLOR = APRICOT_ORANGE;

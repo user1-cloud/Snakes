@@ -51,6 +51,21 @@ SDL_FRect SnakeWorld::world_pos_to_rect(int2 world_pos0) {
 	return screen_left_down_pos_to_rect(world_pos_to_screen_pos(world_pos0));
 }
 
+int2 SnakeWorld::world_pos_little_pos_to_screen_pos(int2 world_pos, int2 little_pos) {
+	int2 little_point_size = point_size / 8;
+	return world_pos_to_screen_pos(world_pos) + int2(little_point_size.x * little_pos.x, little_point_size.y * little_pos.y);
+}
+
+SDL_FRect SnakeWorld::world_pos_little_pos_to_little_rect(int2 world_pos, int2 little_pos) {
+	int2 little_point_size = point_size / 8;
+	return screen_left_down_pos_to_rect(world_pos_to_screen_pos(world_pos) + int2(little_point_size.x * little_pos.x, little_point_size.y * little_pos.y), little_point_size.x, little_point_size.y);
+}
+
+SDL_FRect SnakeWorld::screen_left_down_pos_to_little_rect(int2 screen_pos, int2 little_pos) {
+	int2 little_point_size = point_size / 8;
+	return screen_left_down_pos_to_rect(screen_pos + int2(little_point_size.x * little_pos.x, -little_point_size.y * little_pos.y), little_point_size.x, little_point_size.y);
+}
+
 void SnakeWorld::screen_size_updated(const int2& screen_size0) {
 	point_size = screen_size_to_pointSize(screen_size0, screen_too_wide);
 	screen_size = screen_size0 - int2(1, 1);

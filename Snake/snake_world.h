@@ -35,5 +35,10 @@ struct SnakeWorld
 	SDL_FRect screen_left_down_pos_to_rect(int2 screen_pos, int x, int y);
 	SDL_FRect screen_left_down_pos_to_rect(int2 screen_pos);
 	SDL_FRect world_pos_to_rect(int2 world_pos);
+
+	// 将每个小方块分为8*8的更小方块
+	int2 world_pos_little_pos_to_screen_pos(int2 world_pos, int2 little_pos);
+	SDL_FRect world_pos_little_pos_to_little_rect(int2 world_pos, int2 little_pos);
+	SDL_FRect screen_left_down_pos_to_little_rect(int2 screen_pos, int2 little_pos);
 };
 

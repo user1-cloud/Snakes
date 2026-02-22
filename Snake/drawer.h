@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL3/SDL.h>
+#include "int2.h"
 class Drawer
 {
 	SDL_Window* window;
@@ -10,6 +11,7 @@ public:
 	void draw();
 	void quit();
 
-	void render_game(SDL_Renderer*);
+	void draw_snake_eyes(SDL_Renderer* renderer0, const int2& pos, const int2& dir);
+	void render_game(SDL_Renderer* renderer0);
 };
 
