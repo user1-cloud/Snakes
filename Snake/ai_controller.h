@@ -14,7 +14,7 @@
 class AIController:public Controller {
 public:
     AIController(Snake* snake);
-    virtual void update() override;
+    virtual void turn_update() override;
 
 private:
     Snake* snake_ = nullptr;

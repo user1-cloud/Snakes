@@ -26,6 +26,7 @@
     <ClCompile Include="draw_info.cpp" />
     <ClCompile Include="game_manager.cpp" />
     <ClCompile Include="game_object_manager.cpp" />
+    <ClCompile Include="input_info.cpp" />
     <ClCompile Include="input_manager.cpp" />
     <ClCompile Include="int2.cpp" />
     <ClCompile Include="item.cpp" />
@@ -51,12 +52,14 @@
     <ClInclude Include="draw_info.h" />
     <ClInclude Include="game_manager.h" />
     <ClInclude Include="game_object_manager.h" />
+    <ClInclude Include="input_info.h" />
     <ClInclude Include="input_manager.h" />
     <ClInclude Include="int2.h" />
     <ClInclude Include="item.h" />
     <ClInclude Include="item_manager.h" />
     <ClInclude Include="item_type.h" />
     <ClInclude Include="player_controller.h" />
+    <ClInclude Include="ring_buffer.h" />
     <ClInclude Include="running.h" />
     <ClInclude Include="single_snake_drawInfo.h" />
     <ClInclude Include="snake.h" />
@@ -182,6 +185,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/utf-8</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

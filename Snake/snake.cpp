@@ -192,7 +192,7 @@ void Snake::fixed_update() {
 	move_double_count += speed * FIXED_DELTA_TIME;
 	if (move_double_count > 1.0) {
 		move_double_count -= 1.0;
-		controller->update();
+		controller->turn_update();
 		check_can_move();
 		if (can_move) {
 			move();
@@ -220,9 +220,6 @@ void Snake::fixed_update() {
 			}
 		}
 	}
-	else {
-		controller->update();
-	}
 	if (PlayerController* pc = dynamic_cast<PlayerController*>(controller); pc && pc->is_accelerated && body.size() > 1) {
 		TimeManager::check_timer(accelerate_erase_tail_timer, PLAYER_ACCELERATE_ERASE_TAIL_TIME, std::bind(&Snake::erase_tail, this));
 		current_difference = Time().tick - accelerate_erase_tail_timer.tick;
@@ -231,7 +228,7 @@ void Snake::fixed_update() {
 }
 
 void Snake::update() {
-	
+	controller->accelerate_update();
 }
 
 SingleSnakeDrawInfo Snake::get_draw_info() const {

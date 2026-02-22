@@ -2,11 +2,13 @@
 
 #include <random>
 #include <cstddef>
+#include <array>
 
 #include <SDL3/SDL.h>
 
 #include "color.h"
 #include "int2.h"
+#include "input_info.h"
 
 // 随机数引擎
 typedef std::mt19937 RANDOM_ENGINE_TYPE;
@@ -118,47 +120,90 @@ constexpr double FIXED_DELTA_TIME = 0.02;
 constexpr int INIT_SCREEN_WIDTH = 1280;
 constexpr int INIT_SCREEN_HEIGHT = 720;
 
-// 键位分类
-constexpr int player_down_keys[] = {
-    SDLK_UP,
-    SDLK_DOWN,
-    SDLK_LEFT,
-    SDLK_RIGHT,
-	SDLK_W, 
-    SDLK_S, 
-    SDLK_A, 
-    SDLK_D, 
-    SDLK_SPACE, 
-    SDLK_LSHIFT
+// 键位设置
+constexpr InputInfo INPUT_EMPTY;
+constexpr InputInfo INPUT_UP_0(SDLK_UP, InputInfo::InputInfoType::DOWN);
+constexpr InputInfo INPUT_UP_1(SDLK_W, InputInfo::InputInfoType::DOWN);
+constexpr InputInfo INPUT_DOWN_0(SDLK_DOWN, InputInfo::InputInfoType::DOWN);
+constexpr InputInfo INPUT_DOWN_1(SDLK_S, InputInfo::InputInfoType::DOWN);
+constexpr InputInfo INPUT_LEFT_0(SDLK_LEFT, InputInfo::InputInfoType::DOWN);
+constexpr InputInfo INPUT_LEFT_1(SDLK_A, InputInfo::InputInfoType::DOWN);
+constexpr InputInfo INPUT_RIGHT_0(SDLK_RIGHT, InputInfo::InputInfoType::DOWN);
+constexpr InputInfo INPUT_RIGHT_1(SDLK_D, InputInfo::InputInfoType::DOWN);
+
+constexpr InputInfo INPUT_LSHIFT_DOWN(SDLK_LSHIFT, InputInfo::InputInfoType::DOWN);
+constexpr InputInfo INPUT_LSHIFT_UP(SDLK_LSHIFT, InputInfo::InputInfoType::UP);
+constexpr InputInfo INPUT_SPACE_DOWN(SDLK_SPACE, InputInfo::InputInfoType::DOWN);
+constexpr InputInfo INPUT_SPACE_UP(SDLK_SPACE, InputInfo::InputInfoType::UP);
+
+constexpr InputInfo INPUT_ESC_DOWN(SDLK_ESCAPE, InputInfo::InputInfoType::DOWN);
+constexpr InputInfo INPUT_ESC_UP(SDLK_ESCAPE, InputInfo::InputInfoType::UP);
+
+constexpr std::array<InputInfo, 8> MOVE_DIR_INPUT_ARR = {
+    INPUT_UP_0,
+    INPUT_UP_1,
+    INPUT_DOWN_0,
+    INPUT_DOWN_1,
+    INPUT_LEFT_0,
+    INPUT_LEFT_1,
+    INPUT_RIGHT_0,
+    INPUT_RIGHT_1
 };
-constexpr size_t PLAYER_DOWN_KEYS_SIZE = std::size(player_down_keys);
 
-static constexpr int player_up_keys[] = {
-    SDLK_SPACE,
-    SDLK_LSHIFT
+constexpr std::array<InputInfo, 4> ACCELERATE_INPUT_ARR = {
+    INPUT_LSHIFT_DOWN,
+    INPUT_LSHIFT_UP,
+    INPUT_SPACE_DOWN,
+    INPUT_SPACE_UP
 };
-constexpr size_t PLAYER_UP_KEYS_SIZE = std::size(player_up_keys);
 
-constexpr int ui_down_keys[] = {
-	SDLK_ESCAPE
+constexpr std::array<InputInfo, 2> UI_INPUT_ARR = {
+    INPUT_ESC_DOWN,
+    INPUT_ESC_UP
 };
-constexpr size_t UI_DOWN_KEYS_SIZE = std::size(ui_down_keys);
+//// 键位分类
+//constexpr int player_down_keys[] = {
+//    SDLK_UP,
+//    SDLK_DOWN,
+//    SDLK_LEFT,
+//    SDLK_RIGHT,
+//	SDLK_W, 
+//    SDLK_S, 
+//    SDLK_A, 
+//    SDLK_D, 
+//    SDLK_SPACE, 
+//    SDLK_LSHIFT
+//};
+//constexpr size_t PLAYER_DOWN_KEYS_SIZE = std::size(player_down_keys);
+//
+//static constexpr int player_up_keys[] = {
+//    SDLK_SPACE,
+//    SDLK_LSHIFT
+//};
+//constexpr size_t PLAYER_UP_KEYS_SIZE = std::size(player_up_keys);
+//
+//constexpr int ui_down_keys[] = {
+//	SDLK_ESCAPE
+//};
+//constexpr size_t UI_DOWN_KEYS_SIZE = std::size(ui_down_keys);
+//
+//constexpr int ui_up_keys[] = {
+//	SDLK_ESCAPE
+//};
+//constexpr size_t UI_UP_KEYS_SIZE = std::size(ui_up_keys);
+//
+//// 具体键位设置
+//constexpr int key_up_0 = SDLK_W;
+//constexpr int key_up_1 = SDLK_UP;
+//constexpr int key_down_0 = SDLK_S;
+//constexpr int key_down_1 = SDLK_DOWN;
+//constexpr int key_left_0 = SDLK_A;
+//constexpr int key_left_1 = SDLK_LEFT;
+//constexpr int key_right_0 = SDLK_D;
+//constexpr int key_right_1 = SDLK_RIGHT;
+//constexpr int key_speed_up_0 = SDLK_SPACE;
+//constexpr int key_speed_up_1 = SDLK_LSHIFT;
+//
+//constexpr int key_pause = SDLK_ESCAPE;
 
-constexpr int ui_up_keys[] = {
-	SDLK_ESCAPE
-};
-constexpr size_t UI_UP_KEYS_SIZE = std::size(ui_up_keys);
-
-// 具体键位设置
-constexpr int key_up_0 = SDLK_W;
-constexpr int key_up_1 = SDLK_UP;
-constexpr int key_down_0 = SDLK_S;
-constexpr int key_down_1 = SDLK_DOWN;
-constexpr int key_left_0 = SDLK_A;
-constexpr int key_left_1 = SDLK_LEFT;
-constexpr int key_right_0 = SDLK_D;
-constexpr int key_right_1 = SDLK_RIGHT;
-constexpr int key_speed_up_0 = SDLK_SPACE;
-constexpr int key_speed_up_1 = SDLK_LSHIFT;
-
-constexpr int key_pause = SDLK_ESCAPE;
+constexpr size_t INPUT_BUFFER_SIZE = 4;

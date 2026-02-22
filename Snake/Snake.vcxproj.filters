@@ -99,6 +99,9 @@
     <ClCompile Include="ui_manager.cpp">
       <Filter>源文件\manager</Filter>
     </ClCompile>
+    <ClCompile Include="input_info.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h">
@@ -169,6 +172,12 @@
     </ClInclude>
     <ClInclude Include="ui_manager.h">
       <Filter>头文件\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="input_info.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ring_buffer.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

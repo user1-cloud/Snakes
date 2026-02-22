@@ -26,14 +26,10 @@ void UIManager::ui_update() {
 
 void UIManager::check_pause_event() {
 	bool has_pause_event = false;
-	int ui_event;
-	while ((ui_event = InputManager::get_ui_down_event()) != -1) {
-		switch (ui_event) {
-		case key_pause:
+	InputInfo ui_event;
+	while (InputManager::get_event(InputManager::system_buffer, ui_event)) {
+		if (ui_event == INPUT_ESC_DOWN){
 			has_pause_event = true;
-			break;
-		default:
-			break;
 		}
 	}
 	if (has_pause_event) {
@@ -43,14 +39,10 @@ void UIManager::check_pause_event() {
 
 void UIManager::check_resume_event() {
 	bool has_resume_event = false;
-	int ui_event;
-	while ((ui_event = InputManager::get_ui_up_event()) != -1) {
-		switch (ui_event) {
-		case key_pause:
+	InputInfo ui_event;
+	while (InputManager::get_event(InputManager::system_buffer, ui_event)) {
+		if (ui_event == INPUT_ESC_UP) {
 			has_resume_event = true;
-			break;
-		default:
-			break;
 		}
 	}
 	if (has_resume_event) {

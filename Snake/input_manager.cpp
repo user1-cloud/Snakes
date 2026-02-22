@@ -4,39 +4,23 @@
 #include "running.h"
 #include "game_manager.h"
 
-// 静态成员初始化
-std::array<int, 4> InputManager::player_down_buffer = {};
-std::array<int, 4> InputManager::player_up_buffer = {};
-std::array<int, 4> InputManager::ui_down_buffer = {};
-std::array<int, 4> InputManager::ui_up_buffer = {};
-int InputManager::player_down_head = 0;
-int InputManager::player_down_tail = 0;
-int InputManager::player_up_head = 0;
-int InputManager::player_up_tail = 0;
-int InputManager::ui_down_head = 0;
-int InputManager::ui_down_tail = 0;
-int InputManager::ui_up_head = 0;
-int InputManager::ui_up_tail = 0;
+const std::unordered_set<InputInfo> InputManager::move_dir_input_set(MOVE_DIR_INPUT_ARR.begin(), MOVE_DIR_INPUT_ARR.end());
+const std::unordered_set<InputInfo> InputManager::accelerate_input_set(ACCELERATE_INPUT_ARR.begin(), ACCELERATE_INPUT_ARR.end());
+const std::unordered_set<InputInfo> InputManager::ui_input_set(UI_INPUT_ARR.begin(), UI_INPUT_ARR.end());
+
+RingBuffer<InputInfo, INPUT_BUFFER_SIZE> InputManager::move_direction_buffer = RingBuffer<InputInfo, INPUT_BUFFER_SIZE>();
+RingBuffer<InputInfo, INPUT_BUFFER_SIZE> InputManager::accelerate_buffer = RingBuffer<InputInfo, INPUT_BUFFER_SIZE>();
+RingBuffer<InputInfo, INPUT_BUFFER_SIZE> InputManager::system_buffer = RingBuffer<InputInfo, INPUT_BUFFER_SIZE>();
 
 void InputManager::init() {
-    player_down_buffer = {};
-    player_up_buffer = {};
-    ui_down_buffer = {};
-    ui_up_buffer = {};
-    player_down_head = 0;
-    player_down_tail = 0;
-    player_up_head = 0;
-    player_up_tail = 0;
-    ui_down_head = 0;
-    ui_down_tail = 0;
-    ui_up_head = 0;
-    ui_up_tail = 0;
+    move_direction_buffer.init();
 }
 
 // 实现函数
 void InputManager::update() {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
+        InputInfo input_info;
         switch (event.type) {
             case SDL_EVENT_QUIT:
                 Running::running = 0;
@@ -48,90 +32,37 @@ void InputManager::update() {
                 break;
             }
             case SDL_EVENT_KEY_DOWN: 
-                // 检查是否属于玩家控制器按下键
-                if (is_key_in_array(event.key.key, player_down_keys, PLAYER_DOWN_KEYS_SIZE)) {
-                    // 环形缓冲区写入逻辑（满则覆盖）
-                    if ((player_down_tail + 1) % 4 == player_down_head) {
-                        player_down_head = (player_down_head + 1) % 4;
-                    }
-                    player_down_buffer[player_down_tail] = event.key.key;
-                    player_down_tail = (player_down_tail + 1) % 4;
-                }
-                // 检查是否属于UI控制器按下键
-                else if (is_key_in_array(event.key.key, ui_down_keys, UI_DOWN_KEYS_SIZE)) {
-                    // 环形缓冲区写入逻辑（满则覆盖）
-                    if ((ui_down_tail + 1) % 4 == ui_down_head) {
-                        ui_down_head = (ui_down_head + 1) % 4;
-                    }
-                    ui_down_buffer[ui_down_tail] = event.key.key;
-                    ui_down_tail = (ui_down_tail + 1) % 4;
-                }
+                input_info = InputInfo(event.key.key, InputInfo::InputInfoType::DOWN);
+                buffer_send(input_info);
                 break;
             case SDL_EVENT_KEY_UP:
-                // 检查是否属于玩家控制器抬起键
-                if (is_key_in_array(event.key.key, player_up_keys, PLAYER_UP_KEYS_SIZE)) {
-                    // 环形缓冲区写入逻辑（满则覆盖）
-                    if ((player_up_tail + 1) % 4 == player_up_head) {
-                        player_up_head = (player_up_head + 1) % 4;
-                    }
-                    player_up_buffer[player_up_tail] = event.key.key;
-                    player_up_tail = (player_up_tail + 1) % 4;
-                }
-                // 检查是否属于UI控制器抬起键
-                else if (is_key_in_array(event.key.key, ui_up_keys, UI_UP_KEYS_SIZE)) {
-                    // 环形缓冲区写入逻辑（满则覆盖）
-                    if ((ui_up_tail + 1) % 4 == ui_up_head) {
-                        ui_up_head = (ui_up_head + 1) % 4;
-                    }
-                    ui_up_buffer[ui_up_tail] = event.key.key;
-                    ui_up_tail = (ui_up_tail + 1) % 4;
-                }
+                input_info = InputInfo(event.key.key, InputInfo::InputInfoType::UP);
+                buffer_send(input_info);
+                break;
+            default:
                 break;
         }
     }
 }
 
-bool InputManager::is_key_in_array(int key, const int* arr, int size) {
-    for (int i = 0; i < size; ++i) {
-        if (arr[i] == key) {
-            return true;
-        }
-    }
-    return false;
+bool InputManager::is_key_in_set(const InputInfo& key_info, const std::unordered_set<InputInfo>& set) {
+    return set.find(key_info) != set.end();
 }
 
-int InputManager::get_player_down_event() {
-    if (player_down_head == player_down_tail) {
-        return -1; // 没有事件
-    }
-    int event = player_down_buffer[player_down_head];
-    player_down_head = (player_down_head + 1) % 4;
-    return event;
+bool InputManager::get_event(RingBuffer<InputInfo, INPUT_BUFFER_SIZE>& buffer, InputInfo& info) {
+    bool is_success;
+    info = buffer.read(is_success);
+    return is_success;
 }
 
-int InputManager::get_player_up_event() {
-    if (player_up_head == player_up_tail) {
-        return -1; // 没有事件
+void InputManager::buffer_send(const InputInfo& input_info) {
+    if (is_key_in_set(input_info, move_dir_input_set)) {
+        move_direction_buffer.write(input_info);
     }
-    int event = player_up_buffer[player_up_head];
-    player_up_head = (player_up_head + 1) % 4;
-    return event;
-}
-
-int InputManager::get_ui_down_event() {
-    if (ui_down_head == ui_down_tail) {
-        return -1; // 没有事件
+    else if (is_key_in_set(input_info, accelerate_input_set)) {
+        accelerate_buffer.write(input_info);
     }
-    int event = ui_down_buffer[ui_down_head];
-    ui_down_head = (ui_down_head + 1) % 4;
-    return event;
-}
-
-int InputManager::get_ui_up_event() {
-    if (ui_up_head == ui_up_tail) {
-        return -1; // 没有事件
+    else if (is_key_in_set(input_info, ui_input_set)) {
+        system_buffer.write(input_info);
     }
-    int event = ui_up_buffer[ui_up_head];
-    ui_up_head = (ui_up_head + 1) % 4;
-    return event;
 }
