@@ -4,6 +4,7 @@
 #include "game_manager.h"
 #include "game_object_manager.h"
 #include "ui_manager.h"
+#include "game_stat.h"
 
 Drawer::Drawer(SDL_Window* window) : window(window) {
     renderer = SDL_CreateRenderer(window, NULL); 
@@ -32,12 +33,17 @@ void Drawer::draw() {
     SDL_SetRenderDrawColor(renderer, BACKGROUND_COLOR.r, BACKGROUND_COLOR.g, BACKGROUND_COLOR.b, 255);
 
     // 屏幕大小（减去1后的）
-    int2 screen_size = GameManager::snake_world.screen_size;
+    int2 screen_size = GameManager::snake_world.screen_size + int2(1, 1);
 
     render_game(renderer);
+    if (GameObjectManager::player_snake.is_dying) {
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 50);
+        SDL_FRect target_rect = { 0, 0, screen_size.x, screen_size.y };
+        SDL_RenderFillRect(renderer, &target_rect);
+    }
     if (UIManager::is_paused) {
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 127);
-        SDL_FRect target_rect = { 0, 0, screen_size.x + 1, screen_size.y + 1 };
+        SDL_FRect target_rect = { 0, 0, screen_size.x, screen_size.y };
         SDL_RenderFillRect(renderer, &target_rect);
     }
     SDL_RenderPresent(renderer);

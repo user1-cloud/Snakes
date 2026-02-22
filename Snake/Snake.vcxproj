@@ -26,6 +26,7 @@
     <ClCompile Include="draw_info.cpp" />
     <ClCompile Include="game_manager.cpp" />
     <ClCompile Include="game_object_manager.cpp" />
+    <ClCompile Include="game_stat.cpp" />
     <ClCompile Include="input_info.cpp" />
     <ClCompile Include="input_manager.cpp" />
     <ClCompile Include="int2.cpp" />
@@ -52,6 +53,7 @@
     <ClInclude Include="draw_info.h" />
     <ClInclude Include="game_manager.h" />
     <ClInclude Include="game_object_manager.h" />
+    <ClInclude Include="game_stat.h" />
     <ClInclude Include="input_info.h" />
     <ClInclude Include="input_manager.h" />
     <ClInclude Include="int2.h" />

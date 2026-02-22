@@ -24,7 +24,7 @@ public:
 	inline static std::unordered_map<int2, Item> items;
 	inline static std::vector<int2> enemy_spawn_points;
 
-	inline static std::vector<int2> world_pos_is_safe;
+	//inline static std::vector<int2> world_pos_is_safe;
 	inline static DrawInfo draw_info;
 
 	static bool point_is_items(int2 pos, Item& item_get);

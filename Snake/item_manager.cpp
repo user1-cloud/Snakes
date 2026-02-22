@@ -11,6 +11,7 @@ void ItemManager::set_item(int2 pos, ItemType item_type) {
 }
 
 void ItemManager::init() {
+	GameObjectManager::items.clear();
 	food_timer = Time();
 	for (int i = 0; i < INIT_FOOD_NUMBER; ++i) {
 		try_set_item(ItemType::Food);

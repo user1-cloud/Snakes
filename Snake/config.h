@@ -93,13 +93,18 @@ constexpr Color SNAKE_COLORS[] = {
     VIBRANT_TURQUOISE,
     CHERRY_BLOSSOM_PINK
 };
+
+// 世界之外的背景颜色
 constexpr Color REAL_BACKGROUND_COLOR = MANGO_YELLOW;
+
+// 世界背景颜色
 constexpr Color BACKGROUND_COLOR = SOFT_LEMON;
 
+//玩家蛇身色
 constexpr Color PLAYER_SNAKE_COLOR = INDIAN_RED;
 
 // 食物颜色
-constexpr Color FOOD_COLOR = SLOW_PINK;
+constexpr Color FOOD_COLOR = APRICOT_ORANGE;
 
 // 物品数量限制
 constexpr int MAX_ITEM_NUMBER = 16;
@@ -161,49 +166,5 @@ constexpr std::array<InputInfo, 2> UI_INPUT_ARR = {
     INPUT_ESC_DOWN,
     INPUT_ESC_UP
 };
-//// 键位分类
-//constexpr int player_down_keys[] = {
-//    SDLK_UP,
-//    SDLK_DOWN,
-//    SDLK_LEFT,
-//    SDLK_RIGHT,
-//	SDLK_W, 
-//    SDLK_S, 
-//    SDLK_A, 
-//    SDLK_D, 
-//    SDLK_SPACE, 
-//    SDLK_LSHIFT
-//};
-//constexpr size_t PLAYER_DOWN_KEYS_SIZE = std::size(player_down_keys);
-//
-//static constexpr int player_up_keys[] = {
-//    SDLK_SPACE,
-//    SDLK_LSHIFT
-//};
-//constexpr size_t PLAYER_UP_KEYS_SIZE = std::size(player_up_keys);
-//
-//constexpr int ui_down_keys[] = {
-//	SDLK_ESCAPE
-//};
-//constexpr size_t UI_DOWN_KEYS_SIZE = std::size(ui_down_keys);
-//
-//constexpr int ui_up_keys[] = {
-//	SDLK_ESCAPE
-//};
-//constexpr size_t UI_UP_KEYS_SIZE = std::size(ui_up_keys);
-//
-//// 具体键位设置
-//constexpr int key_up_0 = SDLK_W;
-//constexpr int key_up_1 = SDLK_UP;
-//constexpr int key_down_0 = SDLK_S;
-//constexpr int key_down_1 = SDLK_DOWN;
-//constexpr int key_left_0 = SDLK_A;
-//constexpr int key_left_1 = SDLK_LEFT;
-//constexpr int key_right_0 = SDLK_D;
-//constexpr int key_right_1 = SDLK_RIGHT;
-//constexpr int key_speed_up_0 = SDLK_SPACE;
-//constexpr int key_speed_up_1 = SDLK_LSHIFT;
-//
-//constexpr int key_pause = SDLK_ESCAPE;
 
 constexpr size_t INPUT_BUFFER_SIZE = 4;

@@ -5,6 +5,7 @@
 #include "snake_spawn_manager.h"
 #include "ui_manager.h"
 #include "time_manager.h"
+#include "game_stat.h"
 
 RANDOM_ENGINE_TYPE GameManager::random_engine = GameManager::get_random_engine();
 
@@ -16,10 +17,10 @@ RANDOM_ENGINE_TYPE GameManager::get_random_engine() {
 void GameManager::main_init() {
 	TimeManager::init();
 	UIManager::init();
-	snake_world = SnakeWorld(int2(SNAKE_WORLD_SIZE_X, SNAKE_WORLD_SIZE_Y));
 	ItemManager::init();
 	SnakeSpawnManager::init();
 	GameObjectManager::init();
+	GameStat::init();
 }
 
 SnakeWorld GameManager::snake_world = SnakeWorld();
@@ -38,5 +39,9 @@ void GameManager::main_fixed_update() {
 		ItemManager::fixed_update();
 		SnakeSpawnManager::fixed_update();
 		GameObjectManager::fixed_update();
+		GameStat::fixed_update();
+		if (!GameObjectManager::player_snake.is_active) {
+			main_init();
+		}
 	}
 }

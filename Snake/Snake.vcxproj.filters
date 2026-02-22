@@ -102,6 +102,9 @@
     <ClCompile Include="input_info.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="game_stat.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h">
@@ -177,6 +180,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="ring_buffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game_stat.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
