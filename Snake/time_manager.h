@@ -20,11 +20,6 @@ public:
 
 	template <typename Func, typename... Args>
 	static void check_timer(Time& timer, double time, Func&& func, Args&&... args) {
-		using result_type = std::invoke_result_t<std::decay_t<Func>, std::decay_t<Args>...>;
-		static_assert(
-			std::is_void_v<result_type>,
-			"错误：只能调用返回值为void的函数！"
-			);
 		// Time()为当前时间（修正后的）
 		if (Time() - timer > time) {
 			timer = timer + time;

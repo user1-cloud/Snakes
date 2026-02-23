@@ -1,5 +1,4 @@
 #include <random>
-#include <functional>
 #include "snake.h"
 #include "game_object_manager.h"
 #include "snake_world.h"
@@ -186,7 +185,7 @@ void Snake::dying() {
 
 void Snake::fixed_update() {
 	if (is_dying) {
-		TimeManager::check_timer(dying_leave_food_timer, SNAKE_DYING_LENGTH_REDUCE_TIME, std::bind(&Snake::dying, this));
+		TimeManager::check_timer(dying_leave_food_timer, SNAKE_DYING_LENGTH_REDUCE_TIME, [this](){dying(); });
 		return;
 	}
 	move_double_count += speed * FIXED_DELTA_TIME;
@@ -199,6 +198,9 @@ void Snake::fixed_update() {
 			if (is_death()) {
 				body.pop_back();
 				dying_leave_food_timer = Time();
+				if (body.size() != 1) {
+					old_dir = body[1] - body[0];
+				}
 				is_dying = true;
 			}
 			Item item;
@@ -232,7 +234,7 @@ void Snake::update() {
 }
 
 SingleSnakeDrawInfo Snake::get_draw_info() const {
-	return SingleSnakeDrawInfo(color, body, move_double_count, old_dir, last_tail_pos, is_player());
+	return SingleSnakeDrawInfo(color, body, move_double_count, old_dir, last_tail_pos, is_player(), is_dying);
 }
 
 bool Snake::is_player() const{
