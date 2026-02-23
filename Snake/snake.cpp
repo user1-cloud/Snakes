@@ -252,7 +252,7 @@ void Snake::update() {
 }
 
 SingleSnakeDrawInfo Snake::get_draw_info() const {
-	return SingleSnakeDrawInfo(color, body, move_double_count, old_dir, last_tail_pos, is_player(), is_dying);
+	return SingleSnakeDrawInfo(color, body, move_double_count, new_dir, last_tail_pos, is_player(), is_dying);
 }
 
 bool Snake::is_player() const{

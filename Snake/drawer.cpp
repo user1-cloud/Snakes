@@ -75,7 +75,7 @@ void Drawer::render_game(SDL_Renderer* renderer0) {
         double back_offset_rate = 1 - single_snake_draw_info.move_double_count;
 
         if (body_size == 1) {
-            int2 head_dir = single_snake_draw_info.old_dir;
+            int2 head_dir = single_snake_draw_info.new_dir;
             int2 target_pos = snake_world.world_pos_to_screen_pos(body.back())
                 - int2(snake_world.point_size.x * head_dir.x, -snake_world.point_size.y * head_dir.y)
                 * back_offset_rate;
@@ -98,7 +98,7 @@ void Drawer::render_game(SDL_Renderer* renderer0) {
             SDL_RenderFillRect(renderer0, &target_rect);
             // 如果是玩家蛇，绘制眼睛
             if (single_snake_draw_info.is_player_snake && !single_snake_draw_info.is_dying) {
-                draw_snake_eyes(renderer0, target_pos, single_snake_draw_info.old_dir);
+                draw_snake_eyes(renderer0, target_pos, single_snake_draw_info.new_dir);
             }
 
             int2 tail_dir = body[0] - single_snake_draw_info.last_tail_pos;
