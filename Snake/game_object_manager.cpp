@@ -122,13 +122,18 @@ int2 GameObjectManager::random_safe_pos() {
 }
 
 void GameObjectManager::init() {
+	nonexistent_colors = std::unordered_set<Color>(std::begin(SNAKE_COLORS), std::end(SNAKE_COLORS));
 	choose_enemy_spawn_point();
 	player_snake.awake(GameManager::snake_world.world_center(), SNAKE_PLAYER_INIT_LENGTH, SNAKE_PLAYER_INIT_DIR, PLAYER_SNAKE_COLOR);
 	player_snake.controller = new PlayerController(&player_snake);
 	for (int i = 0; i < enemy_snakes.size(); ++i) {
-		enemy_snakes[i].awake(SNAKE_ENEMY_INIT_LENGTH);
 		if (i >= INIT_ENEMY_SNAKE_NUMBER) {
+			// 这里先用player_snake的数据进行初始化，后续生成函数会重新赋值
+			enemy_snakes[i].awake(GameManager::snake_world.world_center(), SNAKE_PLAYER_INIT_LENGTH, SNAKE_PLAYER_INIT_DIR, PLAYER_SNAKE_COLOR);
 			enemy_snakes[i].is_active = false;
+		}
+		else {
+			enemy_snakes[i].awake(SNAKE_ENEMY_INIT_LENGTH);
 		}
 		enemy_snakes[i].controller = new AIController(&enemy_snakes[i]);
 	}

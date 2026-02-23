@@ -76,9 +76,11 @@ void Snake::awake() {
 }
 
 void Snake::Die() {
-	GameObjectManager::nonexistent_colors.insert(color);
+	if (!is_player()) {
+		//std::lock_guard<std::mutex> lock(std::mutex random_colors_mutex);
+		GameObjectManager::nonexistent_colors.insert(color);
+	}
 	is_active = false;
-
 }
 
 void Snake::turn(int2 direction) {
