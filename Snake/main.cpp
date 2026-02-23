@@ -6,6 +6,7 @@
 #include "game_manager.h"
 #include "game_object_manager.h"
 #include "drawer.h"
+#include "audio_manager.h"
 
 int main(int argc, char* argv[]) {
     // 初始化 SDL3
@@ -27,6 +28,8 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    AudioManager::init();
+
     // 创建渲染器
     Drawer drawer(window);
     if (!drawer.success) {
@@ -39,6 +42,8 @@ int main(int argc, char* argv[]) {
         Updater::updater_update();
         drawer.draw();
     }
+    AudioManager::quit();
     drawer.quit();
+
     return 0;
 }

@@ -3,6 +3,7 @@
 #include <random>
 #include <cstddef>
 #include <array>
+#include <string>
 
 #include <SDL3/SDL.h>
 

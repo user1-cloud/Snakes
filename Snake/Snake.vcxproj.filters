@@ -105,6 +105,9 @@
     <ClCompile Include="game_stat.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="audio_manager.cpp">
+      <Filter>源文件\manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h">
@@ -183,6 +186,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="game_stat.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="audio_manager.h">
+      <Filter>头文件\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="audio_resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

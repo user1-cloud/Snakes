@@ -6,6 +6,7 @@
 #include "player_controller.h"
 #include "time_manager.h"
 #include "item_manager.h"
+#include "audio_manager.h"
 
 Snake::Snake() {
 	awake(GameManager::snake_world.world_center(), SNAKE_PLAYER_INIT_LENGTH, SNAKE_PLAYER_INIT_DIR, PLAYER_SNAKE_COLOR);
@@ -87,6 +88,9 @@ void Snake::Die() {
 void Snake::turn(int2 direction) {
 	if (direction == -old_dir) { return; }
 	new_dir = direction;
+	if (is_player() && direction != old_dir) {
+		AudioManager::play_sound(AudioManager::SoundEffect::PlayerTurn);
+	}
 }
 
 void Snake::move() {

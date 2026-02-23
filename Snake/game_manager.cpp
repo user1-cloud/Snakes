@@ -6,6 +6,7 @@
 #include "ui_manager.h"
 #include "time_manager.h"
 #include "game_stat.h"
+#include "audio_manager.h"
 
 RANDOM_ENGINE_TYPE GameManager::random_engine = GameManager::get_random_engine();
 
@@ -13,7 +14,7 @@ RANDOM_ENGINE_TYPE GameManager::get_random_engine() {
 	std::random_device rd;
 	return RANDOM_ENGINE_TYPE(rd());
 }
-// init总开关
+// 游戏init总开关
 void GameManager::main_init() {
 	TimeManager::init();
 	UIManager::init();
