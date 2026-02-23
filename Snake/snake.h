@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <mutex>
 
 #include "int2.h"
 #include "item.h"
@@ -11,6 +12,8 @@
 
 class Snake
 {
+	// 防止颜色重复
+	mutable std::mutex random_colors_mutex;
 	// 当前时刻减去计时器时刻（tick）
 	int current_difference = 0;
 	// 方向长度必须为1

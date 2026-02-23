@@ -9,6 +9,8 @@
 
 Time GameObjectManager::choose_enemy_spawn_point_timer = Time(0);
 
+std::unordered_set<Color> GameObjectManager::nonexistent_colors(std::begin(SNAKE_COLORS), std::end(SNAKE_COLORS));
+
 bool GameObjectManager::point_is_items(int2 pos, Item& item_get) {
 	auto it = items.find(pos);
 	if (it != items.end()) {
@@ -78,7 +80,7 @@ void GameObjectManager::draw_info_update() {
 	if (player_snake.is_active) {
 		draw_info.single_snake_draw_infos.push_back(player_snake.get_draw_info());
 	}
-	for (Snake snake : enemy_snakes) {
+	for (Snake& snake : enemy_snakes) {
 		if (snake.is_active) {
 			draw_info.single_snake_draw_infos.push_back(snake.get_draw_info());
 		}
@@ -121,15 +123,14 @@ int2 GameObjectManager::random_safe_pos() {
 
 void GameObjectManager::init() {
 	choose_enemy_spawn_point();
-	player_snake = Snake(GameManager::snake_world.world_center(), SNAKE_PLAYER_INIT_LENGTH, SNAKE_PLAYER_INIT_DIR, PLAYER_SNAKE_COLOR);
-	player_snake.is_active = true;
+	player_snake.awake(GameManager::snake_world.world_center(), SNAKE_PLAYER_INIT_LENGTH, SNAKE_PLAYER_INIT_DIR, PLAYER_SNAKE_COLOR);
 	player_snake.controller = new PlayerController(&player_snake);
 	for (int i = 0; i < enemy_snakes.size(); ++i) {
-		enemy_snakes[i] = Snake(3);
+		enemy_snakes[i].awake(SNAKE_ENEMY_INIT_LENGTH);
+		if (i >= INIT_ENEMY_SNAKE_NUMBER) {
+			enemy_snakes[i].is_active = false;
+		}
 		enemy_snakes[i].controller = new AIController(&enemy_snakes[i]);
-	}
-	for (int i = 0; i < INIT_ENEMY_SNAKE_NUMBER; ++i) {
-		enemy_snakes[i].is_active = true;
 	}
 }
 

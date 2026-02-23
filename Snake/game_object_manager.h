@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <vector>
 #include <unordered_map>
+#include <unordered_set>
 #include "snake.h"
 #include "item.h"
 #include "config.h"
@@ -23,6 +24,8 @@ public:
 	
 	inline static std::unordered_map<int2, Item> items;
 	inline static std::vector<int2> enemy_spawn_points;
+
+	static std::unordered_set<Color> nonexistent_colors;
 
 	//inline static std::vector<int2> world_pos_is_safe;
 	inline static DrawInfo draw_info;

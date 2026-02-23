@@ -25,8 +25,18 @@ int Snake::random_length() const{
 }
 
 Color Snake::random_color() const {
-	std::uniform_int_distribution<> dis(0, sizeof(SNAKE_COLORS) / sizeof(SNAKE_COLORS[0]) - 1);
-	return SNAKE_COLORS[dis(GameManager::random_engine)];
+	std::lock_guard<std::mutex> lock(random_colors_mutex);
+	auto& colors = GameObjectManager::nonexistent_colors;
+	if (colors.empty())
+	{
+		std::uniform_int_distribution<> dis(0, sizeof(SNAKE_COLORS) / sizeof(SNAKE_COLORS[0]) - 1);
+		return SNAKE_COLORS[dis(GameManager::random_engine)];
+	}
+	else {
+		Color color = *colors.begin();
+		colors.erase(color);
+		return color;
+	}
 }
 
 void Snake::awake(const int2 init_pos, const int length, const int2 dir, const Color color0) {
@@ -66,7 +76,9 @@ void Snake::awake() {
 }
 
 void Snake::Die() {
+	GameObjectManager::nonexistent_colors.insert(color);
 	is_active = false;
+
 }
 
 void Snake::turn(int2 direction) {
