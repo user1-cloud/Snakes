@@ -46,6 +46,7 @@ void Snake::awake(const int2 init_pos, const int length, const int2 dir, const C
 	else {
 		is_active = true;
 	}
+	move_double_count = 0.0;
 	is_dying = false;
 	body.assign(length, init_pos);
 	last_tail_pos = init_pos;
@@ -203,22 +204,25 @@ void Snake::fixed_update() {
 		return;
 	}
 	move_double_count += speed * FIXED_DELTA_TIME;
-	if (move_double_count > 1.0) {
+	if (move_double_count >= 1.0) {
 		move_double_count -= 1.0;
 		controller->turn_update();
 		check_can_move();
 		if (can_move) {
+			bool need_to_erase_tail = true;
 			move();
 			if (is_death()) {
+				move_double_count = 1.0;
 				body.pop_back();
+				dying();
 				dying_leave_food_timer = Time();
 				if (body.size() != 1) {
 					old_dir = body[1] - body[0];
 				}
 				is_dying = true;
+				need_to_erase_tail = false;
 			}
 			Item item;
-			bool need_to_erase_tail = true;
 			if (check_collision_with_item(item)) {
 				switch (item.type)
 				{
