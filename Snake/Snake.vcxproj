@@ -129,10 +129,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>E:\SDL3_mixer-devel-3.1.2-VC\SDL3_mixer-3.1.2\include;E:\SDL3-devel-3.4.0-VC\SDL3-3.4.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>E:\SDL3_mixer-devel-3.1.2-VC\SDL3_mixer-3.1.2\include;E:\SDL3-3.4.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>E:\SDL3_mixer-devel-3.1.2-VC\SDL3_mixer-3.1.2\include;E:\SDL3-devel-3.4.0-VC\SDL3-3.4.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>E:\SDL3_mixer-devel-3.1.2-VC\SDL3_mixer-3.1.2\include;E:\SDL3-3.4.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -174,11 +174,12 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>E:\SDL3_mixer-devel-3.1.2-VC\SDL3_mixer-3.1.2\lib\x64;E:\SDL3-devel-3.4.0-VC\SDL3-3.4.0\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>E:\SDL3_mixer-devel-3.1.2-VC\SDL3_mixer-3.1.2\lib\x64;E:\SDL3-3.4.0\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL3_mixer.lib;SDL3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "E:\SDL3-devel-3.4.0-VC\SDL3-3.4.0\lib\x64\SDL3.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -196,11 +197,12 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>E:\SDL3_mixer-devel-3.1.2-VC\SDL3_mixer-3.1.2\lib\x64;E:\SDL-release-3.4.0\SDL-release-3.4.0\SDL3_build_static\install\lib;E:\SDL3-devel-3.4.0-VC\SDL3-3.4.0\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>E:\SDL_mixer-prerelease-3.1.2\SDL_mixer-prerelease-3.1.2\VisualC\x64\Release;E:\SDL-release-3.4.0\SDL-release-3.4.0\SDL3_build_static\install\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL3_mixer.lib;SDL3-static.lib;winmm.lib;setupapi.lib;imm32.lib;version.lib;ole32.lib;oleaut32.lib;uuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "E:\SDL3-devel-3.4.0-VC\SDL3-3.4.0\lib\x64\SDL3.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

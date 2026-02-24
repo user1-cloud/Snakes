@@ -14,6 +14,8 @@ void AudioManager::init() {
 	mixer = MIX_CreateMixerDevice(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, NULL);
 
 	load_audio(AudioResource::PLAYER_TURN, AudioResource::PLAYER_TURN_SIZE, SoundEffect::PlayerTurn);
+	load_audio(AudioResource::PLAYER_ACCELERATE, AudioResource::PLAYER_ACCELERATE_SIZE, SoundEffect::PlayerAccelerate);
+	load_audio(AudioResource::SNAKE_DYING, AudioResource::SNAKE_DYING_SIZE, SoundEffect::SnakeDying);
 
 	for (MIX_Track*& track : sound_track_pool) {
 		track = MIX_CreateTrack(mixer);

@@ -193,6 +193,7 @@ void Snake::probably_leave_food(int2 pos) {
 }
 
 void Snake::dying() {
+	AudioManager::play_sound(AudioManager::SoundEffect::SnakeDying);
 	if (body.size() == 1) {
 		Die();
 		probably_leave_food(body.back());

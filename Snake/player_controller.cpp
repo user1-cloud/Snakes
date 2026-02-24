@@ -1,5 +1,6 @@
 #include "player_controller.h"
 #include "input_manager.h"
+#include "audio_manager.h"
 
 PlayerController::PlayerController(Snake* snake):snake(snake) {
 	command_map = {
@@ -14,10 +15,16 @@ PlayerController::PlayerController(Snake* snake):snake(snake) {
 
 		{INPUT_LSHIFT_DOWN, [snake, this]() {
 			snake->change_speed(SNAKE_PLAYER_SPEED_SHIFT_ACCELERATED); 
+			if (!is_accelerated) {
+				AudioManager::play_sound(AudioManager::SoundEffect::PlayerAccelerate);
+			}
 			is_accelerated = true;
 		}},
 		{INPUT_SPACE_DOWN, [snake, this]() {
 			snake->change_speed(SNAKE_PLAYER_SPEED_SHIFT_ACCELERATED);
+			if (!is_accelerated) {
+				AudioManager::play_sound(AudioManager::SoundEffect::PlayerAccelerate);
+			}
 			is_accelerated = true;
 		}},
 		{INPUT_LSHIFT_UP, [snake, this]() {

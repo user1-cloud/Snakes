@@ -8,6 +8,8 @@ class AudioManager
 public:
 	enum class SoundEffect {
 		PlayerTurn,
+		PlayerAccelerate,
+		SnakeDying,
 	};
 private:
 	static void load_audio(unsigned char* audio_data, int size, SoundEffect effect_enum);
