@@ -65,6 +65,7 @@
     <ClInclude Include="item_type.h" />
     <ClInclude Include="player_controller.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="resource2.h" />
     <ClInclude Include="ring_buffer.h" />
     <ClInclude Include="running.h" />
     <ClInclude Include="single_snake_drawInfo.h" />
@@ -75,6 +76,12 @@
     <ClInclude Include="time_manager.h" />
     <ClInclude Include="ui_manager.h" />
     <ClInclude Include="updater.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Snake.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\assets\Sprite-0001.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
