@@ -16,6 +16,7 @@ void AudioManager::init() {
 	load_audio(AudioResource::PLAYER_TURN, AudioResource::PLAYER_TURN_SIZE, SoundEffect::PlayerTurn);
 	load_audio(AudioResource::PLAYER_ACCELERATE, AudioResource::PLAYER_ACCELERATE_SIZE, SoundEffect::PlayerAccelerate);
 	load_audio(AudioResource::SNAKE_DYING, AudioResource::SNAKE_DYING_SIZE, SoundEffect::SnakeDying);
+	load_audio(AudioResource::PLAYER_GET_FOOD, AudioResource::PLAYER_GET_FOOD_SIZE, SoundEffect::PlayerGetFood);
 
 	for (MIX_Track*& track : sound_track_pool) {
 		track = MIX_CreateTrack(mixer);

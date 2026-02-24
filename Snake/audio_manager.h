@@ -9,6 +9,7 @@ public:
 	enum class SoundEffect {
 		PlayerTurn,
 		PlayerAccelerate,
+		PlayerGetFood,
 		SnakeDying,
 	};
 private:

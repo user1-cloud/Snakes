@@ -233,6 +233,9 @@ void Snake::fixed_update() {
 				{
 				case ItemType::Food:
 					need_to_erase_tail = false;
+					if (is_player()) {
+						AudioManager::play_sound(AudioManager::SoundEffect::PlayerGetFood);
+					}
 					break;
 				default:
 					break;
