@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
 
     // 创建窗口
     SDL_Window* window = SDL_CreateWindow(
-        "蛇对蛇",
+        "Snakes",
         INIT_SCREEN_WIDTH,
         INIT_SCREEN_HEIGHT,
         SDL_WINDOW_MAXIMIZED | SDL_WINDOW_RESIZABLE
@@ -28,6 +28,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    // 创建音频管理器
     AudioManager::init();
 
     // 创建渲染器
