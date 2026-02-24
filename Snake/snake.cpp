@@ -253,6 +253,9 @@ void Snake::fixed_update() {
 }
 
 void Snake::update() {
+	if (is_dying) {
+		return;
+	}
 	controller->accelerate_update();
 }
 
