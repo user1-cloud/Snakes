@@ -25,3 +25,4 @@
 
 ## 游戏截图
 ![游戏截图](screenshots/Screenshot.png)
+[【哔哩哔哩】游戏游玩实机视频](https://www.bilibili.com/video/BV1qVftBWEoL/?share_source=copy_web&vd_source=722b2d6c4a0efb2b0fc1aa3c34f95a9d)
